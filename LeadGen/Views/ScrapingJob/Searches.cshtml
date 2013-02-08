@@ -1,0 +1,41 @@
+﻿@model System.Collections.Generic.IEnumerable<LeadGen.Core.LeadSearch>
+
+@{
+    
+}
+
+<h2>Saved Searches</h2>
+
+<style>
+    .progress { margin-bottom: 0px; }
+
+</style>
+
+@if(Model != null && Model.Any())
+{
+    <table style="width: 100%" class="table table-striped table-condensed">
+        <thead>
+            <th>Name</th>
+            <th>Term</th>
+            <th>Location</th>
+            <th>Radius</th>
+            <th>Total</th>
+            <th>Status</th>
+        </thead>
+        @foreach( var ls in Model )
+        {
+            <tr>
+                <td>@ls.Name</td>
+                <td>@ls.Terms</td>
+                <td>@ls.Location</td>
+                <td>@ls.Radius</td>
+                <td>@ls.ListingsFound</td>
+                <td>
+                   @Html.Partial("LeadSearchStatusBar", ls)
+                    
+
+                </td>
+            </tr>
+        }
+    </table>
+}

@@ -1,0 +1,24 @@
+﻿@model LeadGen.Models.SearchViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+@Html.ValidationSummary()
+<h3>Step 1 of 2: Search for Potential Leads</h3>
+<p>Search for potential customers or leads.  We first give you a preview of the results, if the results are the kind of data
+you are looking for click "create job" which then triggers our robots to go out and find the information you are looking for.</p>
+
+@using (Html.BeginForm("Index", "ScrapingJob", FormMethod.Post, new { @class = "form-inline" }))
+{
+    <form action="/" class="form-inline" method="post">
+        <input type="text" name="terms" placeholder="search term/industry (ex: florists)" value="@Model.Terms"/>
+        <input type="text" name="location" placeholder="location (zip or city,state)" value="@Model.Location"/>
+        <input type="text" name="radius" placeholder="mile radius, max 25 miles" value="@( Model.Radius == 0 ? "" : Model.Radius.ToString())"/>
+        <input type="submit" value="Preview" class="btn"/>
+    </form>
+}
+
+
+
